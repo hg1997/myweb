@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--<!DOCTYPE persons system "person.dtd">-->
+
+<persons>
+    <person>
+        <name level="vip">zhangsan</name>
+        <age>100</age>
+    </person>
+
+    <person>
+        <name>lisi</name>
+        <age>101</age>
+    </person>
+</persons>

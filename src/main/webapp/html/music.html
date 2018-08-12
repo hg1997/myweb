@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+ <meta http-equiv=Content-Type content="text/html;charset=utf-8">
+ <title>music</title>
+ <script type="text/javascript" src="js/jquery-3.3.1.min.js"> </script>
+</head>
+<body>
+
+<audio style="display:none; height: 0" id="bg-music" autoplay preload="auto" src="audio/1.mp3" loop="loop"></audio>
+
+<!--<audio autoplay id="bg-music"src="audio/1.mp3"></audio>-->
+
+
+
+
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+        function audioAutoPlay() {
+            var audio = document.getElementById('bg-music');
+            audio.play();
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                audio.play();
+            }, false);
+        }
+        audioAutoPlay();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--实体类定义别名：首字母大小写都可以-->
+    <typeAliases>
+        <package name="edu.cqupt.domain"/>
+    </typeAliases>
+
+    <!--整合后  mapper.xml和mapper.java一个目录下  废除-->
+    <!--<mappers>
+        <package name="edu.cqupt.mapper"/>
+    </mappers>-->
+
+</configuration>

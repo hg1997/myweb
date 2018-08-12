@@ -1,0 +1,94 @@
+/* login  */
+*{
+    margin: 0;
+    padding: 0;
+}
+/*===================  logo  ======================== */
+span{
+    font-size: 24px;
+}
+
+body{
+    background:url(../images/bg.jpg);
+
+}
+#logo{
+    font-size: 100px;
+    text-align: center;
+    /*background-color: aliceblue;*/
+}
+.L{color:#2B75F5}
+.O{color:#D33E2A}
+.G{color:#FFC609}
+.I{color:#00A45D}
+.N{color:#ff5fff}
+/*===================  登录  ======================== */
+#welcome{
+    background:white;
+    font-size: 47px;
+    text-align: center;
+    height: 68px;
+    color: #D33E2A;
+}
+
+#login{
+    width:530px;
+    height: 350px;
+    background: url(../images/login.jpg) no-repeat;
+    filter:alpha(opacity=50);
+    margin: 5px auto;
+    opacity: 0.84;
+    /*padding-top: 70px*/
+}
+
+#user,#password{
+    /*border:1px solid red;*/
+    padding-left: 90px;
+    height:58px;
+}
+
+#verifycode
+{
+    /*border:1px solid red;*/
+    padding-left: 66px;
+    height:70px;
+}
+
+input {
+    display: inline-block;
+    width: 270px;
+    height: 40px;
+    background-color: inherit;
+    border: 2px solid #4f5556;
+    margin: 7px auto;
+    color:#4f5556;
+    font-size: 20px;
+    padding: 0px auto;
+}
+#vid{
+    width:100px;
+}
+
+#img{
+    height: 50px;
+    position: relative;
+    top: 16px;
+}
+
+#go{
+    display: inline-block;
+    width: 175px;
+    height: 45px;
+    background-color:brown;
+    border:2px solid lightblue;
+    font-size: 24px;
+    color: #FFC609;
+    margin-left: 90px;
+}
+
+a{
+    text-decoration: none;
+    color: rgb(0,155,219);
+}
+
+

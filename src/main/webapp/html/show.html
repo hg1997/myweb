@@ -1,0 +1,64 @@
+<html>
+<head>
+    <title>login</title>
+    <meta charset="utf-8"/>
+    <!--导入外部的style-->
+    <link href="css/login.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body>
+<!--logo-->
+<!-- ===================一条华丽的分割线======================== -->
+<div id="logo">
+    <strong class="L">L</strong>
+    <strong class="O">o</strong>
+    <strong class="G">g</strong>
+    <strong class="I">i</strong>
+    <strong class="N">n</strong>
+</div>
+<br/>
+<br/>
+<!-- ===================一条华丽的分割线======================== -->
+
+<div id="login">
+    <form action="#" method="post">
+
+        <div id="welcome">Welcome</div>
+
+        <!--用户名-->
+        <div id="user">
+                <span>用户:</span>&nbsp;
+                <input type="text" name="username" id="uid"/>&nbsp;&nbsp;
+            <!--<span id="udiv"></span>-->
+        </div>
+
+        <!--密码-->
+        <div id="password">
+               <span>密码:</span>&nbsp;
+                <input type="password" name="password" id="pid"/>&nbsp;&nbsp;
+            <!--<span id="pdiv"></span>-->
+        </div>
+
+        <!--验证码-->
+        <div id="verifycode">
+            <span>验证码:</span>&nbsp;
+            <input type="text" name="verifycode" id="vid"/>&nbsp;&nbsp;
+            <img src="images/bg.jpg"  id="img">
+            <!--<span id="pdiv"></span>-->
+        </div>
+
+        <!--登录-->
+          <input type="submit" id="go" value="登录"/>&nbsp;&nbsp;
+        <a href="#">忘记密码？</a>|
+        <a href="#">立即注册</a>
+
+
+
+
+    </form>
+</div>
+
+    <!--导入外部 js-->
+    <script type="text/javascript" src="js/login.js"></script>
+</body>
+</html>

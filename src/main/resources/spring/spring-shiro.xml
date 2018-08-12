@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!--1.配置缓存，此处用到ehcache-->
+	<!--<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/>
+	</bean>-->
+
+	<!--2. 配置ModularRealmAuthenticator-->
+	<bean id="authenticator" class="org.apache.shiro.authc.pam.ModularRealmAuthenticator">
+		<property name="authenticationStrategy"> <!--指定认证策略-->
+			<bean class="org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy"></bean>
+		</property>
+	</bean>
+
+	<!--3. 配置自定义的Realm-->
+	<bean id="realmDemo" class="edu.cqupt.shiro.RealmDemo">
+		<property name="credentialsMatcher">
+			<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+				<property name="hashAlgorithmName" value="MD5"></property>
+				<property name="hashIterations" value="1024"></property>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- 4. 创建securityManager，将前3步注入到securityManager中-->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<!--<property name="cacheManager" ref="cacheManager"/>-->
+		<property name="authenticator" ref="authenticator"></property>
+		<property name="realms">
+			<list>
+				<ref bean="realmDemo"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 创建lifecycleBeanPostProcessor-->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+	<!--  启动IOC容器中使用 shiro 的注解 -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+		  depends-on="lifecycleBeanPostProcessor"/>
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager"/>
+	</bean>
+
+	<!--配置shiroFilter-->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager"/>
+		<property name="loginUrl" value="/jsp/login.jsp"/>
+		<property name="successUrl" value="/jsp/success.jsp"/>
+		<property name="unauthorizedUrl" value="/jsp/fail.jsp"/>
+		<property name="filterChainDefinitionMap" ref="filterChainDefinitionMap"/>
+		<!--<property name="filterChainDefinitions">
+			<value>
+				/login = anon
+				/jsp/login.jsp = anon
+
+				/jsp/user.jsp = roles[zhangsan]
+				/jsp/admin.jsp = roles[lisi]
+
+				/** = authc
+			</value>
+		</property>-->
+	</bean>
+
+	<!--配置shiroFilter需要的filterChainDefinitionMap-->
+	<bean id="filterChainDefinitionMap" factory-bean="filterChainDefinitionMapBuilder" factory-method="buildFilterChainDefinitionMap"/>
+	<bean id="filterChainDefinitionMapBuilder" class="edu.cqupt.shiro.factory.FilterChainDefinitionMapBuilder"/>
+
+</beans>
